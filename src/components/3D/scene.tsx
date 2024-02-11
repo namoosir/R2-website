@@ -1,6 +1,6 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 const ThreeScene: React.FC = () => {
@@ -30,13 +30,11 @@ const ThreeScene: React.FC = () => {
         // resource URL
         '/R2_Logo_final.glb',
         // called when the resource is loaded
-        function ( gltf ) { 
+        function ( gltf: GLTF ) { 
           model = gltf.scene.children[0];
           model.geometry.center();
           model.rotateX(Math.PI / 2);
 
-          model.material.roughness = 1;
-          model.material.metalness = 1;
           scene.add( model );
 
           // Adjust camera position and target
@@ -52,13 +50,12 @@ const ThreeScene: React.FC = () => {
           scene.add(spotLight);
         },
         // called while loading is progressing
-        function ( xhr: { loaded: number; total: number; } ) {
-      
+        function ( xhr: ProgressEvent<EventTarget> ) {
           console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
       
         },
         // called when loading has errors
-        function ( error: any ) {
+        function ( error: unknown ) {
           console.log(error);
           console.log( 'An error happened' );
       
