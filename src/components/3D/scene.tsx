@@ -21,7 +21,7 @@ const ThreeScene: React.FC = () => {
       renderer.setSize(225, 225);
       renderer.setClearColor( 0x000000, 0 );
 
-      if (containerRef && containerRef.current?.childElementCount == 1) containerRef.current?.appendChild(renderer.domElement);
+      if (containerRef && containerRef.current?.childElementCount == 0) containerRef.current?.appendChild(renderer.domElement);
 
       const loader = new GLTFLoader();
 
@@ -83,7 +83,7 @@ const ThreeScene: React.FC = () => {
         directionalLight.position.copy(camera.position);
 
         if (model) model.rotation.z = 0.01 * getAdjustedScroll();
-        if (model) model.rotation.y = -0.01 * getAdjustedScroll();
+        if (model) model.rotation.y = -0.005 * getAdjustedScroll();
         
         controls.update();
         renderer.render(scene, camera);
@@ -112,8 +112,9 @@ const ThreeScene: React.FC = () => {
   }, []);
   
   return (
-    <div className="w-max relative" ref={containerRef}>
-      <div className="-z-[2] w-[225px] h-[225px] absolute inset-0 w-full h-full rounded-full bg-gradient-to-br from-primary via-background to-transparent filter-blur-4"/>
+    <div className="flex justify-center w-full relative" ref={containerRef}>
+      {/* <div className="-z-[2] h-full absolute inset-0 w-full h-full rounded-full backgroundImage"/> */}
+      {/* <div className="h-full w-full justify-center absolute flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-muted before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-muted after:via-muted after:to-muted after:blur-2xl after:content-[''] before:lg:h-[360px] z-[-1]"></div> */}
     </div>
   );
 };
