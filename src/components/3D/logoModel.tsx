@@ -1,12 +1,16 @@
-import { useEffect, useRef } from "react";
+import { RefObject, useEffect, useRef } from "react";
 import { useGLTF } from "@react-three/drei";
-import { Mesh } from "three";
 import { SpringOptions, useMotionValue, useSpring, useScroll, useTransform } from "framer-motion";
 import { motion } from 'framer-motion-3d';
+import { MeshProps } from "@react-three/fiber";
 
-export default function LogoModel() {
+type LogoModelProps = {
+    containerRef: RefObject<HTMLDivElement>;
+}
+
+export default function LogoModel(props: LogoModelProps) {
     const { nodes, materials } = useGLTF("/R2_Logo_final.glb");
-    const modelRef = useRef<Mesh>(null);
+    const modelRef = useRef<MeshProps>(null);
     const options: SpringOptions = {
         damping: 90
     };
@@ -28,10 +32,10 @@ export default function LogoModel() {
     }
 
     //scroll stuff
-    const mainContainer = useRef(document.querySelector('main'))
+    console.log(props, props.containerRef);
     const { scrollYProgress } = useScroll({
-        target: mainContainer,
-        offset: ['start start', 'end end']
+        target: props.containerRef,
+        offset: ['start 72px', 'center start']
     });
     const progress = useTransform(scrollYProgress, [0, 1], [0, -Math.PI / 2])
     const smoothProgress = useSpring(progress, options);
@@ -41,7 +45,7 @@ export default function LogoModel() {
     });
 
     useEffect(() => {
-        if (modelRef.current) {
+        if (modelRef.current && modelRef.current.geometry) {
             modelRef.current.geometry.center();
         }
 
