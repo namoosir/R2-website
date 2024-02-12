@@ -32,7 +32,6 @@ export default function LogoModel(props: LogoModelProps) {
     }
 
     //scroll stuff
-    console.log(props, props.containerRef);
     const { scrollYProgress } = useScroll({
         target: props.containerRef,
         offset: ['start 72px', 'center start']
