@@ -60,8 +60,13 @@ export default function LogoModel(props: LogoModelProps) {
             <motion.mesh
                 ref={modelRef}
                 rotation-x={mouse.y}
+
+                // only mouse move animation
                 // rotation-z={mouse.x}
+
+                // only scroll animation
                 // rotation-z={smoothProgress}
+                
                 rotation-z={combinedZRotation}
                 castShadow
                 receiveShadow
