@@ -7,10 +7,12 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start:prod": "vite dist"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.0.2",
+    "@react-spring/three": "^9.7.3",
     "@react-three/drei": "^9.97.5",
     "@react-three/fiber": "^8.15.16",
     "class-variance-authority": "^0.7.0",
