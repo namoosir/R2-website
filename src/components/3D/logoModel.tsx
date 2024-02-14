@@ -25,7 +25,7 @@ export default function LogoModel(props: LogoModelProps) {
     const [mousePosition, setMousePosition] = useState({ x: + 0.25, y: Math.PI / 2 - 0.25 });
 
     const options: SpringOptions = {
-        damping: 10,
+        damping: 80,
         stiffness: 300,
     };
 
@@ -36,7 +36,7 @@ export default function LogoModel(props: LogoModelProps) {
     };
 
     const manageMouseMove = (e: { clientX: any; clientY: any; }) => {
-        let { innerWidth, innerHeight } = window;
+        const { innerWidth, innerHeight } = window;
         const { clientX, clientY } = e;
 
         const x = -1 * (-0.5 + (clientX / innerWidth));
