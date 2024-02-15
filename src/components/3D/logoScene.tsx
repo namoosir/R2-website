@@ -1,9 +1,9 @@
 import { Suspense, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { PerspectiveCamera, TrackballControls } from "@react-three/drei";
+import { LinearToneMapping, PerspectiveCamera as PerspectiveCameraType } from "three";
 
 import LogoModel from "./logoModel";
-import { LinearToneMapping, PerspectiveCamera as PerspectiveCameraType } from "three";
 
 export default function LogoScene() {
     const cameraRef = useRef<PerspectiveCameraType>(null);

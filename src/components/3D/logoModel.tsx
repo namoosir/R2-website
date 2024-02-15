@@ -34,7 +34,6 @@ export default function LogoModel(props: LogoModelProps) {
         x: useSpring(useMotionValue(0), options),
         y: useSpring(useMotionValue(0), options)
     };
-
     const manageMouseMove = (e: { clientX: any; clientY: any; }) => {
         const { innerWidth, innerHeight } = window;
         const { clientX, clientY } = e;
@@ -44,7 +43,6 @@ export default function LogoModel(props: LogoModelProps) {
 
         setMousePosition({ x, y });
     }
-
     useEffect(() => {
         mouse.x.set(mousePosition.x);
         mouse.y.set(mousePosition.y);
