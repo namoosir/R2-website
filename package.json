@@ -11,12 +11,14 @@
     "start:prod": "vite dist"
   },
   "dependencies": {
+    "@radix-ui/react-aspect-ratio": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
     "@react-spring/three": "^9.7.3",
     "@react-three/drei": "^9.97.5",
     "@react-three/fiber": "^8.15.16",
     "@studio-freight/lenis": "^1.0.35",
     "@studio-freight/react-lenis": "^0.0.44",
+    "@uidotdev/usehooks": "^2.4.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "framer-motion": "^11.0.3",

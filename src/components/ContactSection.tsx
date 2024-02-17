@@ -13,7 +13,7 @@ export default function ContactSection() {
 
     return (
         <div id='contactSection' className="flex flex-col gap-4">
-            <h1 className="text-5xl text-center font-black">
+            <h1 className="text-5xl font-black">
                 Contact Us
             </h1>
             <Card className="flex flex-col justify-center items-center min-w-[320px] p-5">
