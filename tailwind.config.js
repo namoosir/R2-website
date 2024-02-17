@@ -17,6 +17,9 @@ export default {
       },
     },
     extend: {
+      screens: {
+        'lg': '1440px',
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
