@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { RefObject, useEffect, useRef, useState } from "react";
+import { RefObject, useEffect, useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { SpringOptions, useMotionValue, useScroll, useTransform, useSpring } from "framer-motion";
 import { motion } from 'framer-motion-3d';
@@ -32,8 +32,8 @@ export default function LogoModel(props: LogoModelProps) {
     
     //mouse stuff
     const mouse = {
-        x: useSpring(useMotionValue(0.25), options),
-        y: useSpring(useMotionValue(Math.PI / 2 - 0.25), options)
+        x: useSpring(useMotionValue(0), options),
+        y: useSpring(useMotionValue(0), options)
     };
     useEffect(() => {
         const { innerWidth, innerHeight } = window;

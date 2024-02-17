@@ -33,7 +33,7 @@ export default function ServiceSection() {
 
     return (
         <div id='serviceSection' className="flex flex-col gap-4">
-            <h1 className="text-5xl text-center font-black">
+            <h1 className="text-5xl font-black">
                 Services
             </h1>
             <h1 className="text-lg font-semibold text-muted-foreground">
@@ -44,7 +44,6 @@ export default function ServiceSection() {
                     return <ServiceCard {...props} key={index}/>
                 })
             }
-            {/* <ServiceCard {"UI/UX Design", PencilSketch}/> */}
         </div>
     );
 }
