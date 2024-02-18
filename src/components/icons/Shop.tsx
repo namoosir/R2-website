@@ -1,6 +1,7 @@
-export default function Shop() {
-    return (
-        <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+import { type IconPropsType } from './types'
+export default function Shop ({ className }: IconPropsType) {
+  return (
+        <svg className={className} width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_249_168)">
                 <path d="M25.875 15.0991V25.5991C25.875 26.0632 25.6907 26.5084 25.3625 26.8366C25.0343 27.1648 24.5891 27.3491 24.125 27.3491H4.875C4.41088 27.3491 3.96575 27.1648 3.63756 26.8366C3.30938 26.5084 3.125 26.0632 3.125 25.5991V15.0991" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M22.375 19.4741C22.375 18.5459 22.0062 17.6556 21.3498 16.9993C20.6935 16.3429 19.8032 15.9741 18.875 15.9741C17.9468 15.9741 17.0565 16.3429 16.4002 16.9993C15.7438 17.6556 15.375 18.5459 15.375 19.4741V27.3491H22.375V19.4741Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -15,6 +16,5 @@ export default function Shop() {
                 </clipPath>
             </defs>
         </svg>
-    );
+  )
 }
-

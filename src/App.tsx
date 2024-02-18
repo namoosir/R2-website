@@ -2,14 +2,14 @@ import {
   BrowserRouter as Router,
   Route,
   Routes
-} from "react-router-dom";
+} from 'react-router-dom'
 
 import Header from './components/header'
-import Home from './components/HomePage';
-import Mouse from "./components/mouse";
-import { MouseProvider } from "./contexts/MouseContext";
+import Home from './components/HomePage'
+import Mouse from './components/mouse'
+import { MouseProvider } from './contexts/MouseContext'
 
-function App() {
+function App () {
   return (
     <MouseProvider>
       <Mouse />

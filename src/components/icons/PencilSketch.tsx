@@ -1,6 +1,7 @@
-export default function PencilSketch() {
-    return (
-        <svg width="30" height="40" viewBox="0 0 30 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+import { type IconPropsType } from './types'
+export default function PencilSketch ({ className }: IconPropsType) {
+  return (
+        <svg className={className} width="30" height="40" viewBox="0 0 30 40" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g filter="url(#filter0_d_249_139)">
                 <path d="M5.08673 31.2241V17.2955L10.9167 20.8907L15 17.5574L19.0833 20.8907L24.9121 17.2955V31.2241" stroke="#F8FAFC" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M5.09796 17.2937L14.0513 2.77129C14.5161 2.01748 15.494 2.01748 15.9588 2.77129L24.9121 17.2937" stroke="#F8FAFC" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -21,7 +22,5 @@ export default function PencilSketch() {
                 </filter>
             </defs>
         </svg>
-    );
+  )
 }
-
-

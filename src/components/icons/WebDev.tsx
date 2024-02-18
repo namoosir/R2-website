@@ -1,6 +1,8 @@
-export default function WebDev() {
-    return (
-        <svg width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+import { type IconPropsType } from './types'
+
+export default function WebDev ({ className }: IconPropsType) {
+  return (
+        <svg className={className} width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_249_148)">
                 <path d="M24.726 12.9464V3.07339C24.726 2.17116 23.9365 1.38171 23.0343 1.38171H2.73415C1.83193 1.38171 1.04248 2.17116 1.04248 3.07339V21.6818C1.04248 22.584 1.83193 23.3735 2.73415 23.3735H12.8605" stroke="white" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M1.04248 6.4585H24.726" stroke="white" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
@@ -18,5 +20,5 @@ export default function WebDev() {
             </defs>
         </svg>
 
-    );
+  )
 }

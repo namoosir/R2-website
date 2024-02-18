@@ -1,29 +1,34 @@
-import { ReactNode, createContext, useState } from 'react';
+import { type ReactNode, createContext, useState } from 'react'
 
-type MouseProviderProps = {
-    children: ReactNode
+interface MouseProviderProps {
+  children: ReactNode
 }
 
-type MouseContextType = {
-    mouseVariant: string[];
-    setMouseVariant: React.Dispatch<React.SetStateAction<string[]>>;
-};
+interface MouseContextType {
+  mouseVariant: string[]
+  setMouseVariant: React.Dispatch<React.SetStateAction<string[]>>
+  mouseChildren: ReactNode
+  setMouseChildren: React.Dispatch<React.SetStateAction<ReactNode>>
+}
 
 const defaultValues = {
-    mouseVariant: ["default"],
-    setMouseVariant: () => {}
-};
-
-const MouseContext = createContext<MouseContextType>(defaultValues);
-
-const MouseProvider = (props: MouseProviderProps) => {
-    const [mouseVariant, setMouseVariant] = useState<string[]>(["default"]);
-
-    return (
-        <MouseContext.Provider value={{ mouseVariant, setMouseVariant }}>
-            { props.children }
-        </MouseContext.Provider>
-    )
+  mouseVariant: ['default'],
+  setMouseVariant: () => {},
+  mouseChildren: undefined,
+  setMouseChildren: () => {}
 }
 
-export { MouseContext, MouseProvider };
+const MouseContext = createContext<MouseContextType>(defaultValues)
+
+const MouseProvider = (props: MouseProviderProps) => {
+  const [mouseVariant, setMouseVariant] = useState<string[]>(['default'])
+  const [mouseChildren, setMouseChildren] = useState<ReactNode | undefined>(undefined)
+
+  return (
+        <MouseContext.Provider value={{ mouseVariant, setMouseVariant, mouseChildren, setMouseChildren }}>
+            { props.children }
+        </MouseContext.Provider>
+  )
+}
+
+export { MouseContext, MouseProvider }
