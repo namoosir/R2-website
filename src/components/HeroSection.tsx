@@ -5,7 +5,7 @@ import { useLenis } from '@studio-freight/react-lenis'
 export default function HeroSection () {
   const lenis = useLenis(() => { })
   const options = {
-    offset: -72
+    offset: -92
   }
 
   const onContactClick = () => {
