@@ -6,7 +6,7 @@ import OurWorkSection from "./OurWorkSection";
 
 export default function Home() {
     return (
-        <main className="flex min-h-screen flex-col items-center justify-start px-5 pb-5 py-[72px] gap-5 lg:gap-44 lg:py-44">
+        <main className="flex min-h-screen flex-col items-center justify-center px-5 pb-5 py-[72px] gap-5 w-full lg:gap-44 lg:py-44">
             <HeroSection />
             <ServiceSection />
             <OurWorkSection />

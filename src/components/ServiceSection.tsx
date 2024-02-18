@@ -32,14 +32,14 @@ export default function ServiceSection() {
     ];
 
     return (
-        <div id='serviceSection' className="flex flex-col gap-4 lg:gap-8 lg:w-[1120px]">
+        <div id='serviceSection' className="flex flex-col gap-4 w-full max-w-[1120px] lg:gap-8">
             <h1 className="text-5xl font-black ">
                 Services
             </h1>
             <h1 className="text-lg font-semibold text-muted-foreground lg:text-xl">
                 We are experts in:
             </h1>
-            <div className="flex flex-col gap-4 lg:flex-row lg:flex-wrap lg:gap-x-5">
+            <div className="flex flex-col gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-5">
                 {
                     cardProps.map((props, index) => {
                         return <ServiceCard {...props} key={index}/>

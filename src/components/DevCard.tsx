@@ -15,7 +15,7 @@ export type DevCardProps = {
 export function DevCard(props: DevCardProps) {
 
     return (
-        <Card className="flex flex-row justify-around items-center min-w-[320px] max-w-[360px] p-5 gap-4 lg:flex-col lg:p-12 lg:w-[360px] lg:gap-8">
+        <Card className="flex flex-row justify-around items-center min-w-[320px] w-full p-5 gap-4 lg:flex-col lg:p-12 lg:w-[360px] lg:gap-8">
             <div className="w-20 filter lg:w-48">
                 {props.image ?
                     //TODO: FILTER

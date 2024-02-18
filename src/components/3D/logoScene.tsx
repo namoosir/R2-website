@@ -35,7 +35,7 @@ export default function LogoScene() {
 
     return (
         <div id="r2Logo" ref={containerRef} className="flex justify-center relative lg:order-2">
-            <div className="h-full w-full justify-center absolute flex place-items-center before:absolute before:h-[225px] before:w-[180px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-primary/20 before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[180px] after:translate-x-1/3 after:bg-gradient-conic after:from-primary/20 after:via-primary/20 after:to-primary/20 after:blur-2xl after:content-[''] z-[-1]"></div>
+            <div className="h-full w-full justify-center absolute flex place-items-center before:absolute before:h-[225px] before:w-[180px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-primary/20 before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[180px] after:translate-x-1/3 after:bg-gradient-conic after:from-primary/20 after:via-primary/20 after:blur-2xl after:content-[''] before:lg:h-[600px] before:lg:w-[480px] after:lg:h-[480px] after:lg:w-[480px] after:lg:blur-3xl z-[-1]"></div>
             <Canvas
                 style={{ width: `${canvasDimensions}px`, height: `${canvasDimensions}px` }}
                 gl={{ toneMapping: LinearToneMapping }}

@@ -17,7 +17,7 @@ export default function HeroSection() {
     };
 
     return (
-        <div id="heroSection" className="flex flex-col gap-5 flex-1 lg:flex-row max-w-[1120px]">
+        <div id="heroSection" className="flex flex-col gap-5 flex-1 lg:flex-row w-full max-w-[1120px]">
             <LogoScene />
             <div className="flex gap-5 flex-col justify-center lg:order-1 lg:gap-9">
                 <h1 className="text-5xl font-black lg:text-7xl">Product Design and Development</h1>

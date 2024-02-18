@@ -18,6 +18,7 @@ export default {
     },
     extend: {
       screens: {
+        'sm': '700px',
         'lg': '1440px',
       },
       backgroundImage: {
