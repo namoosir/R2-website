@@ -48,7 +48,7 @@ export default function LogoModel (props: LogoModelProps) {
   // scroll stuff
   const { scrollYProgress } = useScroll({
     target: props.containerRef,
-    offset: ['start 72px', 'center start']
+    offset: ['start 88px', 'center start']
   })
   const progress = useTransform(scrollYProgress, [0, 1], [0, -Math.PI / 2])
   const smoothProgress = useSpring(progress, options)

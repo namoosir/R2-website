@@ -2,8 +2,10 @@ import { useContext, useEffect, useState } from 'react'
 import { MouseContext } from '@/contexts/MouseContext'
 import { useLenis } from '@studio-freight/react-lenis'
 import { useWindowSize } from '@uidotdev/usehooks'
+import { useClickAway } from '@uidotdev/usehooks'
+import { motion, AnimatePresence } from 'framer-motion'
 
-import Hamburger from './icons/hamburger'
+import Hamburger from 'hamburger-react'
 import UpArrow from './icons/UpArrow'
 import DownArrow from './icons/DownArrow'
 import Logo from '../assets/Logo.png'
@@ -20,19 +22,18 @@ export default function Header() {
     const lenis = useLenis(() => { })
     const window = useWindowSize();
 
-    const [showLargeMenu, setShowLargeMenu] = useState<boolean>(false);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
     const [options, setOptions] = useState({ offset: -92 });
+    const mobileRef = useClickAway(() => setIsOpen(false));
 
     useEffect(() => {
         if (!window || !window.width) return;
 
         if (window.width < 1440) {
-            setShowLargeMenu(false);
             setOptions({
                 offset: -92,
             });
         } else {
-            setShowLargeMenu(true);
             setOptions({
                 offset: -256
             })
@@ -86,27 +87,63 @@ export default function Header() {
     }
 
     return (
-        <header className="w-full fixed z-50 top-0 backdrop-filter backdrop-blur-md border-b border-border/40 bg-background/40 flex justify-center">
+        <header className="w-full fixed z-50 top-0 bg-background lg:backdrop-filter lg:backdrop-blur-md border-b border-border/40 lg:bg-background/40 flex justify-center">
             <div className="flex p-5 flex-row justify-between items-center w-[1120px]">
                 <img onClick={onLogoClick} onMouseEnter={onLogoOver} onMouseLeave={resetToDefault} src={Logo} className="w-8 h-8 hover:cursor-none" />
-                {showLargeMenu ?
-                    <div>
-                        {menu.map((menuItem, index) => (
-                            <Button 
-                                className='hover:cursor-none'
-                                variant={"ghost"} 
-                                onClick={() => onMenuClick(menuItem.section)}
-                                onMouseEnter={() => onMenuMouseEnter(menuItem.name)}
-                                onMouseLeave={resetToDefault}
-                                key={index}
+                <div className='hidden lg:block'>
+                    {menu.map((menuItem, index) => (
+                        <Button 
+                            className='hover:cursor-none'
+                            variant={"ghost"} 
+                            onClick={() => onMenuClick(menuItem.section)}
+                            onMouseEnter={() => onMenuMouseEnter(menuItem.name)}
+                            onMouseLeave={resetToDefault}
+                            key={index}
+                        >
+                            {menuItem.name}
+                        </Button>
+                    ))}
+                </div>
+                
+                <div ref={mobileRef} className='lg:hidden'>
+                    <Hamburger color='hsl(var(--primary))' size={24} toggled={isOpen} toggle={setIsOpen}/>
+                    <AnimatePresence>
+                        {isOpen && (
+                            <motion.div 
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.2 }}
+                                className='fixed left-0 shadow-4xl right-0 top-[88px] p-5 pt-0 bg-background border-b/40 grid gap-2'
                             >
-                                {menuItem.name}
-                            </Button>
-                        ))}
-                    </div>
-                    :
-                    <Hamburger />
-                }
+                                {menu.map((menuItem, index) => (
+                                    <motion.div
+                                        initial={{ scale: 0, opacity: 0 }}
+                                        animate={{ scale: 1, opacity: 1 }}
+                                        transition={{
+                                            type: 'spring',
+                                            stiffness: 260,
+                                            damping: 20,
+                                            delay: 0.1 + index / 10,
+                                        }}
+                                    >
+                                        <Button 
+                                            className='w-full p-[0.08rem]'
+                                            variant={"ghost"} 
+                                            onClick={() => {
+                                                setIsOpen((prev) => !prev)
+                                                onMenuClick(menuItem.section)
+                                            }}
+                                            key={index}
+                                        >
+                                            {menuItem.name}
+                                        </Button>
+                                    </motion.div>
+                                ))}
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
             </div>
         </header>
     )
