@@ -91,13 +91,14 @@ export default function Header() {
                 <img onClick={onLogoClick} onMouseEnter={onLogoOver} onMouseLeave={resetToDefault} src={Logo} className="w-8 h-8 hover:cursor-none" />
                 {showLargeMenu ?
                     <div>
-                        {menu.map((menuItem) => (
+                        {menu.map((menuItem, index) => (
                             <Button 
                                 className='hover:cursor-none'
                                 variant={"ghost"} 
                                 onClick={() => onMenuClick(menuItem.section)}
                                 onMouseEnter={() => onMenuMouseEnter(menuItem.name)}
                                 onMouseLeave={resetToDefault}
+                                key={index}
                             >
                                 {menuItem.name}
                             </Button>
