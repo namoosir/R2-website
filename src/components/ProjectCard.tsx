@@ -14,13 +14,13 @@ export interface ProjectCardProps {
 }
 
 export function ProjectCard (props: ProjectCardProps) {
-  const { setMouseVariant, mouseVariant, setMouseChildren } = useContext(MouseContext)
+  const { setMouseVariant, mouseVariant, setMouseChildren, resetToDefault } = useContext(MouseContext)
 
   function onWorkOver () {
     const child = (
             <div className="flex flex-col items-center justify-center">
                 <p className="text-sm text-primary-foreground font-bold">VIEW</p>
-                <CallMade className="fill-primary-foreground w-4 h-4"/>
+                <CallMade className="fill-primary-foreground"/>
             </div>
     )
 
@@ -28,16 +28,11 @@ export function ProjectCard (props: ProjectCardProps) {
     setMouseChildren(child)
   }
 
-  const onWorkLeave = () => {
-    setMouseVariant(['default'])
-    setMouseChildren(undefined)
-  }
-
   return (
         <>
             {
                 props.reverse
-                  ? <Card className={'flex flex-col lg:flex-row justify-center items-center min-w-[320px] p-5 gap-4 before:translate-y-[90%] after:translate-y-[90%] lg:py-20 lg:px-12 lg:gap-8 before:lg:translate-y-0 after:lg:translate-y-0 before:lg:translate-x-[200%] after:lg:translate-x-[120%]'} onClick={props.onClick} onMouseEnter={onWorkOver} onMouseLeave={onWorkLeave}>
+                  ? <Card className={'flex flex-col lg:flex-row justify-center items-center min-w-[320px] p-5 gap-4 before:translate-y-[90%] after:translate-y-[90%] lg:py-20 lg:px-12 lg:gap-8 before:lg:translate-y-0 after:lg:translate-y-0 before:lg:translate-x-[200%] after:lg:translate-x-[120%]'} onClick={props.onClick} onMouseEnter={onWorkOver} onMouseLeave={resetToDefault}>
                         <div className={'w-[210px] lg:w-1/2 lg:order-1 lg:flex-1'}>
                             <AspectRatio ratio={69 / 100}>
                                 <img src={props.image} alt={props.description} />
@@ -52,7 +47,7 @@ export function ProjectCard (props: ProjectCardProps) {
                             </h4>
                         </div>
                     </Card>
-                  : <Card className={'flex flex-col lg:flex-row justify-center items-center min-w-[320px] p-5 gap-4 before:translate-y-[90%] after:translate-y-[90%] lg:py-20 lg:px-12 lg:gap-8 before:lg:translate-y-0 after:lg:translate-y-0 before:lg:-translate-x-[250%] after:lg:-translate-x-[170%]'} onClick={props.onClick} onMouseEnter={onWorkOver} onMouseLeave={onWorkLeave}>
+                  : <Card className={'flex flex-col lg:flex-row justify-center items-center min-w-[320px] p-5 gap-4 before:translate-y-[90%] after:translate-y-[90%] lg:py-20 lg:px-12 lg:gap-8 before:lg:translate-y-0 after:lg:translate-y-0 before:lg:-translate-x-[250%] after:lg:-translate-x-[170%]'} onClick={props.onClick} onMouseEnter={onWorkOver} onMouseLeave={resetToDefault}>
                         <div className={'w-[210px] lg:w-1/2 lg:order-2 lg:flex-1'}>
                             <AspectRatio ratio={69 / 100}>
                                 <img src={props.image} alt={props.description} />

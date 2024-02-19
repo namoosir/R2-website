@@ -5,6 +5,7 @@ import { useWindowSize } from '@uidotdev/usehooks'
 
 import Hamburger from './icons/hamburger'
 import UpArrow from './icons/UpArrow'
+import DownArrow from './icons/DownArrow'
 import Logo from '../assets/Logo.png'
 import { Button } from './ui/button'
 
@@ -15,7 +16,7 @@ type menu = {
 }
 
 export default function Header() {
-    const { setMouseVariant, mouseVariant, setMouseChildren } = useContext(MouseContext)
+    const { setMouseVariant, mouseVariant, setMouseChildren, resetToDefault } = useContext(MouseContext)
     const lenis = useLenis(() => { })
     const window = useWindowSize();
 
@@ -45,11 +46,6 @@ export default function Header() {
         setMouseChildren(child)
     };
 
-    const onLogoLeave = () => {
-        setMouseVariant(['default'])
-        setMouseChildren(undefined)
-    };
-
     const onLogoClick = () => {
         lenis?.scrollTo(0)
     };
@@ -77,14 +73,34 @@ export default function Header() {
         lenis?.scrollTo(section, options);
     };
 
+    const onMenuMouseEnter = (name: string) => {
+        const child = (
+            <div className="flex flex-col items-center justify-center">
+                <p className="text-sm text-primary-foreground font-bold">{name}</p>
+                <DownArrow className="fill-primary-foreground"/>
+            </div>
+        )
+
+        setMouseVariant([...mouseVariant, 'enlarged'])
+        setMouseChildren(child)
+    }
+
     return (
-        <header className="w-full fixed z-50 top-0 backdrop-filter backdrop-blur-md border-b border-border/40 bg-background/40">
-            <div className="flex p-5 flex-row justify-between items-center">
-                <img onClick={onLogoClick} onMouseEnter={onLogoOver} onMouseLeave={onLogoLeave} src={Logo} className="w-8 h-8 hover:cursor-none" />
+        <header className="w-full fixed z-50 top-0 backdrop-filter backdrop-blur-md border-b border-border/40 bg-background/40 flex justify-center">
+            <div className="flex p-5 flex-row justify-between items-center w-[1120px]">
+                <img onClick={onLogoClick} onMouseEnter={onLogoOver} onMouseLeave={resetToDefault} src={Logo} className="w-8 h-8 hover:cursor-none" />
                 {showLargeMenu ?
                     <div>
                         {menu.map((menuItem) => (
-                            <Button variant={"ghost"} onClick={() => onMenuClick(menuItem.section)}>{menuItem.name}</Button>
+                            <Button 
+                                className='hover:cursor-none'
+                                variant={"ghost"} 
+                                onClick={() => onMenuClick(menuItem.section)}
+                                onMouseEnter={() => onMenuMouseEnter(menuItem.name)}
+                                onMouseLeave={resetToDefault}
+                            >
+                                {menuItem.name}
+                            </Button>
                         ))}
                     </div>
                     :

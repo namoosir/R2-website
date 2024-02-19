@@ -16,13 +16,13 @@ export interface DevCardProps {
 }
 
 export function DevCard (props: DevCardProps) {
-  const { setMouseVariant, mouseVariant, setMouseChildren } = useContext(MouseContext)
+  const { setMouseVariant, mouseVariant, setMouseChildren, resetToDefault } = useContext(MouseContext)
 
   function onDevOver () {
     const child = (
             <div className="flex flex-col items-center justify-center">
                 <p className="text-sm text-primary-foreground font-bold">PORTFOLIO</p>
-                <CallMade className="fill-primary-foreground w-4 h-4"/>
+                <CallMade className="fill-primary-foreground"/>
             </div>
     )
 
@@ -30,17 +30,12 @@ export function DevCard (props: DevCardProps) {
     setMouseChildren(child)
   }
 
-  const onDevLeave = () => {
-    setMouseVariant(['default'])
-    setMouseChildren(undefined)
-  }
-
   const onClick = () => {
     window.open(props.profile)
   }
 
   return (
-        <Card className="flex flex-row justify-around items-center min-w-[320px] w-full p-5 gap-4 lg:flex-col lg:p-12 lg:w-[360px] lg:gap-8" onClick={onClick} onMouseEnter={onDevOver} onMouseLeave={onDevLeave}>
+        <Card className="flex flex-row justify-around items-center min-w-[320px] w-full p-5 gap-4 lg:flex-col lg:p-12 lg:w-[360px] lg:gap-8" onClick={onClick} onMouseEnter={onDevOver} onMouseLeave={resetToDefault}>
             <div className="w-20 filter lg:w-48">
                 {props.image
                 // TODO: FILTER
