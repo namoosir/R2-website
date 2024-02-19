@@ -89,19 +89,30 @@ export default function Header() {
     return (
         <header className="w-full fixed z-50 top-0 bg-background lg:backdrop-filter lg:backdrop-blur-md border-b border-border/40 lg:bg-background/40 flex justify-center">
             <div className="flex p-5 flex-row justify-between items-center w-[1120px]">
-                <img onClick={onLogoClick} onMouseEnter={onLogoOver} onMouseLeave={resetToDefault} src={Logo} className="w-8 h-8 hover:cursor-none" />
-                <div className='hidden lg:block'>
+                <img onClick={onLogoClick} onMouseEnter={onLogoOver} onMouseLeave={resetToDefault} src={Logo} className="w-8 h-8 lg:w-10 lg:h-10 hover:cursor-none" />
+                <div className='hidden lg:flex'>
                     {menu.map((menuItem, index) => (
-                        <Button 
-                            className='hover:cursor-none'
-                            variant={"ghost"} 
-                            onClick={() => onMenuClick(menuItem.section)}
-                            onMouseEnter={() => onMenuMouseEnter(menuItem.name)}
-                            onMouseLeave={resetToDefault}
-                            key={index}
+                        <motion.div
+                            initial={{ scale: 0, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            transition={{
+                                type: 'spring',
+                                stiffness: 260,
+                                damping: 20,
+                                delay: 0.5 + index / 10,
+                            }}
                         >
-                            {menuItem.name}
-                        </Button>
+                            <Button 
+                                className='hover:cursor-none'
+                                variant={"ghost"} 
+                                onClick={() => onMenuClick(menuItem.section)}
+                                onMouseEnter={() => onMenuMouseEnter(menuItem.name)}
+                                onMouseLeave={resetToDefault}
+                                key={index}
+                            >
+                                {menuItem.name}
+                            </Button>
+                        </motion.div>
                     ))}
                 </div>
                 
