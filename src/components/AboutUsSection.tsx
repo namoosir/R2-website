@@ -31,7 +31,7 @@ export default function AboutUsSection() {
         About Us
       </h1>
       <h1 className="text-lg font-semibold text-muted-foreground lg:text-xl">
-        R<sup>2</sup> Studios is comprised of experienced software engineers from fortune 500 companies.
+        R<sup>2</sup> Studio is comprised of experienced software engineers from fortune 500 companies.
       </h1>
       <div className="flex flex-col items-center gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-5 lg:hover:cursor-none">
         {

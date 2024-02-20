@@ -16,7 +16,7 @@ export default function ContactSection () {
                 Contact Us
             </h1>
             <h1 className="text-lg font-semibold text-muted-foreground lg:text-xl">
-                Ready to take your business to new heights? Get in touch with us for a free consulation!
+                Ready to take your business to new heights? Get in touch with us for a free consultation!
             </h1>
             <Card className="flex flex-col justify-center items-center min-w-[320px] p-5 lg:py-20 lg:px-12">
                 <div className="flex flex-row items-center">
