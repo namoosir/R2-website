@@ -3,6 +3,7 @@ import { useContext } from 'react'
 import { Card } from './ui/card'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 
+import AnimateMouse from './AnimateMouse'
 import CallMade from './icons/CallMade'
 
 export interface ProjectCardProps {
@@ -18,15 +19,16 @@ export function ProjectCard (props: ProjectCardProps) {
 
   function onWorkOver () {
     const child = (
-            <div className="flex flex-col items-center justify-center">
-                <p className="text-sm text-primary-foreground font-bold">VIEW</p>
-                <CallMade className="fill-primary-foreground"/>
-            </div>
-    )
+        <AnimateMouse
+          textChild={<p className="text-sm text-primary-foreground font-bold">View</p>}
+          iconChild={<CallMade className="fill-primary-foreground" />}
+        />
+      )
 
     setMouseVariant([...mouseVariant, 'enlarged'])
     setMouseChildren(child)
   }
+
 
   return (
         <>
@@ -38,7 +40,7 @@ export function ProjectCard (props: ProjectCardProps) {
                                 <img src={props.image} alt={props.description} />
                             </AspectRatio>
                         </div>
-                        <div className={'flex flex-col justify-center gap-2 lg:order-2 lg:flex-1'}>
+                        <div className={'flex flex-col justify-center gap-2 lg:order-2 lg:flex-1 lg:gap-4'}>
                             <h4 className={'text-xl font-semibold text-card-foreground lg:text-5xl lg:font-black lg:text-right'}>
                                 {props.title}
                             </h4>
@@ -53,7 +55,7 @@ export function ProjectCard (props: ProjectCardProps) {
                                 <img src={props.image} alt={props.description} />
                             </AspectRatio>
                         </div>
-                        <div className={'flex flex-col justify-center gap-2 lg:order-1 lg:flex-1'}>
+                        <div className={'flex flex-col justify-center gap-2 lg:order-1 lg:flex-1 lg:gap-4'}>
                             <h4 className={'text-xl font-semibold text-card-foreground lg:text-5xl lg:font-black lg:text-left'}>
                                 {props.title}
                             </h4>

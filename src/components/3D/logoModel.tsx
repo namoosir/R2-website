@@ -5,6 +5,7 @@ import { type SpringOptions, useMotionValue, useScroll, useTransform, useSpring 
 import { motion } from 'framer-motion-3d'
 import { type MeshProps } from '@react-three/fiber'
 import { type GLTF } from 'three-stdlib'
+
 import useMouse from '@/utils/useMouse'
 
 interface LogoModelProps {
@@ -27,7 +28,7 @@ export default function LogoModel (props: LogoModelProps) {
 
   const options: SpringOptions = {
     damping: 80,
-    stiffness: 300
+    stiffness: 300,
   }
 
   // mouse stuff
@@ -35,7 +36,7 @@ export default function LogoModel (props: LogoModelProps) {
     x: useSpring(useMotionValue(0), options),
     y: useSpring(useMotionValue(0), options)
   }
-  useEffect(() => {
+  useEffect(() => {    
     const { innerWidth, innerHeight } = window
 
     const x = -1 * (-0.5 + (mousePosition.x / innerWidth))
@@ -43,7 +44,7 @@ export default function LogoModel (props: LogoModelProps) {
 
     mouse.x.set(x)
     mouse.y.set(y)
-  }, [mousePosition])
+  }, [mousePosition, window, mouse])
 
   // scroll stuff
   const { scrollYProgress } = useScroll({

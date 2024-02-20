@@ -1,6 +1,6 @@
 import { DevCard, type DevCardProps } from './DevCard'
 
-export default function AboutUsSection () {
+export default function AboutUsSection() {
   const devCardProps: DevCardProps[] = [
     {
       name: 'Nazmus Saqeeb',
@@ -26,21 +26,20 @@ export default function AboutUsSection () {
   ]
 
   return (
-        <div id='aboutUsSection' className="flex flex-col gap-4 w-full max-w-[1120px] lg:gap-8 lg:w-[1120px]">
-            <h1 className="text-5xl font-black">
-                About Us
-            </h1>
-            <h1 className="text-lg font-semibold text-muted-foreground lg:text-xl">
-                R2 Studios is a design and development firm committed to bring customers needs to life.
-            </h1>
-            <div className="flex flex-col items-center gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-5 lg:hover:cursor-none">
-                {
-                    devCardProps.map((props, index) => {
-                      return <DevCard {...props} key={index} />
-                    })
-                }
-            </div>
-
-        </div>
+    <div id='aboutUsSection' className="flex flex-col gap-4 w-full max-w-[1120px] lg:gap-8 lg:w-[1120px]">
+      <h1 className="text-5xl font-black">
+        About Us
+      </h1>
+      <h1 className="text-lg font-semibold text-muted-foreground lg:text-xl">
+        R<sup>2</sup> Studios is comprised of experienced software engineers from fortune 500 companies.
+      </h1>
+      <div className="flex flex-col items-center gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-5 lg:hover:cursor-none">
+        {
+          devCardProps.map((props, index) => {
+            return <DevCard {...props} key={index} />
+          })
+        }
+      </div>
+    </div>
   )
 }

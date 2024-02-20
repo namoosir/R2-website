@@ -3,15 +3,32 @@ import ContactSection from './ContactSection'
 import ServiceSection from './ServiceSection'
 import AboutUsSection from './AboutUsSection'
 import OurWorkSection from './OurWorkSection'
+import AnimateInView from './AnimateInView'
 
-export default function Home () {
+export default function Home() {
   return (
-        <main className="flex min-h-screen flex-col items-center justify-center px-5 pb-5 py-[88px] gap-5 w-full lg:gap-44 lg:py-44">
-            <HeroSection />
-            <ServiceSection />
-            <OurWorkSection />
-            <AboutUsSection />
-            <ContactSection />
-        </main>
+    <main className="flex min-h-screen flex-col items-center justify-center px-5 pb-5 gap-5 w-full h-full">
+      <AnimateInView>
+        <HeroSection />
+      </AnimateInView>
+
+      <div className='flex flex-col gap-10 pt-10 lg:gap-40'>
+        <AnimateInView reverse>
+          <ServiceSection />
+        </AnimateInView>
+
+        <AnimateInView>
+          <OurWorkSection />
+        </AnimateInView>
+
+        <AnimateInView reverse>
+          <AboutUsSection />
+        </AnimateInView>
+
+        <AnimateInView>
+          <ContactSection />
+        </AnimateInView>
+      </div>
+    </main >
   )
 }

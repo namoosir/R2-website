@@ -8,13 +8,20 @@ export default function useMouse () {
     y: (0.5) * innerHeight
   })
 
-  const handleMouseMove = (e: { clientX: any, clientY: any }) => {
-    const { clientX, clientY } = e
-
-    setMouse({ x: clientX, y: clientY })
-  }
-
+  
   useEffect(() => {
+    const handleMouseMove = (e: { clientX: any, clientY: any }) => {
+      const now = Date.now();
+      
+      if (!lastMouseUpdate || now - lastMouseUpdate >= 4) {
+        const { clientX, clientY } = e
+        setMouse({ x: clientX, y: clientY })
+        lastMouseUpdate = now;
+      }
+    }
+
+    let lastMouseUpdate: number | null = null;
+
     setTimeout(() => {
       window.addEventListener('mousemove', handleMouseMove)
     }, 500)

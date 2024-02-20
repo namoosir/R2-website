@@ -7,14 +7,19 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 import Hamburger from 'hamburger-react'
 import UpArrow from './icons/UpArrow'
-import DownArrow from './icons/DownArrow'
 import Logo from '../assets/Logo.png'
 import { Button } from './ui/button'
 
+import ContactIcon from './icons/Contact'
+import ServiceIcon from './icons/Service'
+import WorkIcon from './icons/Work'
+import AboutIcon from './icons/About'
+import AnimateMouse from './AnimateMouse'
 
 type menu = {
     name: string,
-    section: string
+    section: string,
+    icon: JSX.Element,
 }
 
 export default function Header() {
@@ -41,7 +46,11 @@ export default function Header() {
     }, [window]);
 
     const onLogoOver = () => {
-        const child = <UpArrow />
+        const child = (
+            <AnimateMouse
+              iconChild={<UpArrow />}
+            />
+        )
 
         setMouseVariant([...mouseVariant, 'enlarged'])
         setMouseChildren(child)
@@ -54,19 +63,23 @@ export default function Header() {
     const menu: menu[] = [
         {
             name: 'Services',
-            section: '#serviceSection'
+            section: '#serviceSection',
+            icon: <ServiceIcon className='fill-white p-1' />
         },
         {
             name: 'Our Work',
-            section: '#ourWorkSection'
+            section: '#ourWorkSection',
+            icon: <WorkIcon className='fill-white p-1' />
         },
         {
             name: 'About Us',
-            section: '#aboutUsSection'
+            section: '#aboutUsSection',
+            icon: <AboutIcon className='fill-white p-1' />
         },
         {
             name: 'Contact Us',
-            section: '#contactSection'
+            section: '#contactSection',
+            icon: <ContactIcon className='fill-white p-1' />
         },
     ];
 
@@ -74,22 +87,10 @@ export default function Header() {
         lenis?.scrollTo(section, options);
     };
 
-    const onMenuMouseEnter = (name: string) => {
-        const child = (
-            <div className="flex flex-col items-center justify-center">
-                <p className="text-sm text-primary-foreground font-bold">{name}</p>
-                <DownArrow className="fill-primary-foreground"/>
-            </div>
-        )
-
-        setMouseVariant([...mouseVariant, 'enlarged'])
-        setMouseChildren(child)
-    }
-
     return (
         <header className="w-full fixed z-50 top-0 bg-background lg:backdrop-filter lg:backdrop-blur-md border-b border-border/40 lg:bg-background/40 flex justify-center">
             <div className="flex p-5 flex-row justify-between items-center w-[1120px]">
-                <img onClick={onLogoClick} onMouseEnter={onLogoOver} onMouseLeave={resetToDefault} src={Logo} className="w-8 h-8 lg:w-10 lg:h-10 hover:cursor-none" />
+                <img onClick={onLogoClick} onMouseEnter={onLogoOver} onMouseLeave={resetToDefault} src={Logo} className="w-8 h-8 lg:w-10 lg:h-10 lg:hover:cursor-none" />
                 <div className='hidden lg:flex'>
                     {menu.map((menuItem, index) => (
                         <motion.div
@@ -101,26 +102,26 @@ export default function Header() {
                                 damping: 20,
                                 delay: 0.5 + index / 10,
                             }}
+                            key={index}
                         >
-                            <Button 
+                            <Button
                                 className='hover:cursor-none'
-                                variant={"ghost"} 
+                                variant={"ghost"}
                                 onClick={() => onMenuClick(menuItem.section)}
-                                onMouseEnter={() => onMenuMouseEnter(menuItem.name)}
-                                onMouseLeave={resetToDefault}
                                 key={index}
                             >
+                                {menuItem.icon}
                                 {menuItem.name}
                             </Button>
                         </motion.div>
                     ))}
                 </div>
-                
+
                 <div ref={mobileRef} className='lg:hidden'>
-                    <Hamburger color='hsl(var(--primary))' size={24} toggled={isOpen} toggle={setIsOpen}/>
+                    <Hamburger color='hsl(var(--primary))' size={24} toggled={isOpen} toggle={setIsOpen} />
                     <AnimatePresence>
                         {isOpen && (
-                            <motion.div 
+                            <motion.div
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
@@ -138,15 +139,16 @@ export default function Header() {
                                             delay: 0.1 + index / 10,
                                         }}
                                     >
-                                        <Button 
+                                        <Button
                                             className='w-full p-[0.08rem]'
-                                            variant={"ghost"} 
+                                            variant={"ghost"}
                                             onClick={() => {
                                                 setIsOpen((prev) => !prev)
                                                 onMenuClick(menuItem.section)
                                             }}
                                             key={index}
                                         >
+                                            {menuItem.icon}
                                             {menuItem.name}
                                         </Button>
                                     </motion.div>
