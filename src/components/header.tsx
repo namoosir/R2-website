@@ -30,7 +30,7 @@ export default function Header() {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [options, setOptions] = useState({ offset: -92 });
     const mobileRef = useClickAway(() => setIsOpen(false));
-
+    
     useEffect(() => {
         if (!window || !window.width) return;
 
@@ -117,7 +117,11 @@ export default function Header() {
                     ))}
                 </div>
 
-                <div ref={mobileRef} className='lg:hidden'>
+                <div 
+                    // @ts-ignore 
+                    ref={mobileRef} 
+                    className='lg:hidden'
+                >
                     <Hamburger color='hsl(var(--primary))' size={24} toggled={isOpen} toggle={setIsOpen} />
                     <AnimatePresence>
                         {isOpen && (
