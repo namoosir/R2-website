@@ -1,7 +1,8 @@
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 
 import { Card } from './ui/card'
 import { AspectRatio } from './ui/aspect-ratio'
+// eslint-disable-next-line import/no-absolute-path
 import profilePlaceholder from '/PortraitPlaceholder.png'
 import { MouseContext } from '@/contexts/MouseContext'
 import CallMade from './icons/CallMade'
@@ -15,10 +16,10 @@ export interface DevCardProps {
   profile: string
 }
 
-export function DevCard(props: DevCardProps) {
+export function DevCard (props: DevCardProps): JSX.Element {
   const { setMouseVariant, mouseVariant, setMouseChildren, resetToDefault } = useContext(MouseContext)
 
-  function onDevOver() {
+  function onDevOver (): void {
     const child = (
       <AnimateMouse
         textChild={<p className="text-sm text-primary-foreground font-bold">Portfolio</p>}
@@ -30,14 +31,14 @@ export function DevCard(props: DevCardProps) {
     setMouseChildren(child)
   }
 
-  const onClick = () => {
+  const onClick = (): void => {
     window.open(props.profile)
   }
 
   return (
     <Card className="flex flex-row justify-around items-center min-w-[320px] w-full p-5 gap-4 lg:flex-col lg:p-12 lg:w-[360px] lg:gap-8" onClick={onClick} onMouseEnter={onDevOver} onMouseLeave={resetToDefault}>
       <div className="w-20 filter lg:w-48">
-        {props.image
+        {props.image != null
           // TODO: FILTER
           ? <AspectRatio>
             <img src={props.image} className="rounded-full" />

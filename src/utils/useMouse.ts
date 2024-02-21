@@ -1,26 +1,30 @@
 import { useEffect, useState } from 'react'
 
-export default function useMouse () {
+interface Mouse {
+  x: number
+  y: number
+}
+
+export default function useMouse (): Mouse {
   const { innerWidth, innerHeight } = window
 
-  const [mouse, setMouse] = useState({
+  const [mouse, setMouse] = useState<Mouse>({
     x: (-0.25 + 0.5) * innerWidth,
     y: (0.5) * innerHeight
   })
 
-  
   useEffect(() => {
-    const handleMouseMove = (e: { clientX: any, clientY: any }) => {
-      const now = Date.now();
-      
-      if (!lastMouseUpdate || now - lastMouseUpdate >= 4) {
+    const handleMouseMove = (e: { clientX: any, clientY: any }): void => {
+      const now = Date.now()
+
+      if ((lastMouseUpdate == null) || now - lastMouseUpdate >= 4) {
         const { clientX, clientY } = e
         setMouse({ x: clientX, y: clientY })
-        lastMouseUpdate = now;
+        lastMouseUpdate = now
       }
     }
 
-    let lastMouseUpdate: number | null = null;
+    let lastMouseUpdate: number | null = null
 
     setTimeout(() => {
       window.addEventListener('mousemove', handleMouseMove)

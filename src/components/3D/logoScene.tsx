@@ -1,4 +1,5 @@
-import { Suspense, useEffect, useRef, useState } from 'react'
+/* eslint-disable react/no-unknown-property */
+import React, { Suspense, useEffect, useRef, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { PerspectiveCamera } from '@react-three/drei'
 import { LinearToneMapping, type PerspectiveCamera as PerspectiveCameraType } from 'three'
@@ -6,7 +7,7 @@ import { useWindowSize } from '@uidotdev/usehooks'
 
 import LogoModel from './logoModel'
 
-export default function LogoScene () {
+export default function LogoScene (): JSX.Element {
   const windowSize = useWindowSize()
 
   const MIN_CANVAS_SIZE = 225
@@ -17,8 +18,8 @@ export default function LogoScene () {
   const cameraRef = useRef<PerspectiveCameraType>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  const findCorrectDimensions = () => {
-    if (!windowSize?.width) return MIN_CANVAS_SIZE
+  const findCorrectDimensions = (): number => {
+    if ((windowSize?.width) == null) return MIN_CANVAS_SIZE
 
     const canvasSizeDiff = MAX_CANVAS_SIZE - MIN_CANVAS_SIZE
     const screenSizeDiff = Math.min(1, Math.max(0, (windowSize.width - MIN_SCREEN_SIZE) / (MAX_SCREEN_SIZE - MIN_SCREEN_SIZE)))

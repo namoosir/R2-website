@@ -1,8 +1,7 @@
-import { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { MouseContext } from '@/contexts/MouseContext'
 import { useLenis } from '@studio-freight/react-lenis'
-import { useWindowSize } from '@uidotdev/usehooks'
-import { useClickAway } from '@uidotdev/usehooks'
+import { useWindowSize, useClickAway } from '@uidotdev/usehooks'
 import { motion, AnimatePresence } from 'framer-motion'
 
 import Hamburger from 'hamburger-react'
@@ -16,78 +15,78 @@ import WorkIcon from './icons/Work'
 import AboutIcon from './icons/About'
 import AnimateMouse from './AnimateMouse'
 
-type menu = {
-    name: string,
-    section: string,
-    icon: JSX.Element,
+interface menu {
+  name: string
+  section: string
+  icon: JSX.Element
 }
 
-export default function Header() {
-    const { setMouseVariant, mouseVariant, setMouseChildren, resetToDefault } = useContext(MouseContext)
-    const lenis = useLenis(() => { })
-    const window = useWindowSize();
+export default function Header (): JSX.Element {
+  const { setMouseVariant, mouseVariant, setMouseChildren, resetToDefault } = useContext(MouseContext)
+  const lenis = useLenis(() => { })
+  const window = useWindowSize()
 
-    const [isOpen, setIsOpen] = useState<boolean>(false);
-    const [options, setOptions] = useState({ offset: -92 });
-    const mobileRef = useClickAway(() => setIsOpen(false));
-    
-    useEffect(() => {
-        if (!window || !window.width) return;
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [options, setOptions] = useState({ offset: -92 })
+  const mobileRef = useClickAway(() => { setIsOpen(false) })
 
-        if (window.width < 1440) {
-            setOptions({
-                offset: -92,
-            });
-        } else {
-            setOptions({
-                offset: -256
-            })
-        }
-    }, [window]);
+  useEffect(() => {
+    if ((window?.width) == null) return
 
-    const onLogoOver = () => {
-        const child = (
+    if (window.width < 1440) {
+      setOptions({
+        offset: -92
+      })
+    } else {
+      setOptions({
+        offset: -256
+      })
+    }
+  }, [window])
+
+  const onLogoOver = (): void => {
+    const child = (
             <AnimateMouse
-              iconChild={<UpArrow />}
+              iconChild={<UpArrow className='animate-bounce'/>}
             />
-        )
+    )
 
-        setMouseVariant([...mouseVariant, 'enlarged'])
-        setMouseChildren(child)
-    };
+    setMouseVariant([...mouseVariant, 'enlarged'])
+    setMouseChildren(child)
+  }
 
-    const onLogoClick = () => {
-        lenis?.scrollTo(0)
-    };
+  const onLogoClick = (): void => {
+    lenis?.scrollTo(0)
+  }
 
-    const menu: menu[] = [
-        {
-            name: 'Services',
-            section: '#serviceSection',
-            icon: <ServiceIcon className='fill-white p-1' />
-        },
-        {
-            name: 'Our Work',
-            section: '#ourWorkSection',
-            icon: <WorkIcon className='fill-white p-1' />
-        },
-        {
-            name: 'About Us',
-            section: '#aboutUsSection',
-            icon: <AboutIcon className='fill-white p-1' />
-        },
-        {
-            name: 'Contact Us',
-            section: '#contactSection',
-            icon: <ContactIcon className='fill-white p-1' />
-        },
-    ];
+  const menu: menu[] = [
+    {
+      name: 'Services',
+      section: '#serviceSection',
+      icon: <ServiceIcon className='fill-white p-1' />
+    },
+    {
+      name: 'Our Work',
+      section: '#ourWorkSection',
+      icon: <WorkIcon className='fill-white p-1' />
+    },
+    {
+      name: 'About Us',
+      section: '#aboutUsSection',
+      icon: <AboutIcon className='fill-white p-1' />
+    },
+    {
+      name: 'Contact Us',
+      section: '#contactSection',
+      icon: <ContactIcon className='fill-white p-1' />
+    }
+  ]
 
-    const onMenuClick = (section: string) => {
-        lenis?.scrollTo(section, options);
-    };
+  const onMenuClick = (section: string): void => {
+    lenis?.scrollTo(section, options)
+  }
 
-    return (
+  return (
         <header className="w-full fixed z-50 top-0 bg-background lg:backdrop-filter lg:backdrop-blur-md border-b border-border/40 lg:bg-background/40 flex justify-center">
             <div className="flex p-5 flex-row justify-between items-center w-[1120px]">
                 <img onClick={onLogoClick} onMouseEnter={onLogoOver} onMouseLeave={resetToDefault} src={Logo} className="w-8 h-8 lg:w-10 lg:h-10 lg:hover:cursor-none" />
@@ -97,17 +96,17 @@ export default function Header() {
                             initial={{ scale: 0, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             transition={{
-                                type: 'spring',
-                                stiffness: 260,
-                                damping: 20,
-                                delay: 0.5 + index / 10,
+                              type: 'spring',
+                              stiffness: 260,
+                              damping: 20,
+                              delay: 0.5 + index / 10
                             }}
                             key={index}
                         >
                             <Button
                                 className='hover:cursor-none'
-                                variant={"ghost"}
-                                onClick={() => onMenuClick(menuItem.section)}
+                                variant={'ghost'}
+                                onClick={() => { onMenuClick(menuItem.section) }}
                                 key={index}
                             >
                                 {menuItem.icon}
@@ -117,9 +116,9 @@ export default function Header() {
                     ))}
                 </div>
 
-                <div 
-                    // @ts-ignore 
-                    ref={mobileRef} 
+                <div
+                    // @ts-expect-error ref type is not matching
+                    ref={mobileRef}
                     className='lg:hidden'
                 >
                     <Hamburger color='hsl(var(--primary))' size={24} toggled={isOpen} toggle={setIsOpen} />
@@ -137,18 +136,19 @@ export default function Header() {
                                         initial={{ scale: 0, opacity: 0 }}
                                         animate={{ scale: 1, opacity: 1 }}
                                         transition={{
-                                            type: 'spring',
-                                            stiffness: 260,
-                                            damping: 20,
-                                            delay: 0.1 + index / 10,
+                                          type: 'spring',
+                                          stiffness: 260,
+                                          damping: 20,
+                                          delay: 0.1 + index / 10
                                         }}
+                                        key={index}
                                     >
                                         <Button
                                             className='w-full p-[0.08rem]'
-                                            variant={"ghost"}
+                                            variant={'ghost'}
                                             onClick={() => {
-                                                setIsOpen((prev) => !prev)
-                                                onMenuClick(menuItem.section)
+                                              setIsOpen((prev) => !prev)
+                                              onMenuClick(menuItem.section)
                                             }}
                                             key={index}
                                         >
@@ -163,5 +163,5 @@ export default function Header() {
                 </div>
             </div>
         </header>
-    )
+  )
 }

@@ -1,13 +1,12 @@
 import { motion } from 'framer-motion'
-import { ReactNode } from 'react';
+import React, { type ReactNode } from 'react'
 
-type AnimateMouseProps = {
-  textChild?: ReactNode,
+interface AnimateMouseProps {
+  textChild?: ReactNode
   iconChild?: ReactNode
-};
+}
 
-export default function AnimateMouse(props: AnimateMouseProps) {
-
+export default function AnimateMouse (props: AnimateMouseProps): JSX.Element {
   return (
     <div>
       <motion.div className="flex flex-col items-center justify-center"

@@ -1,3 +1,4 @@
+import React from 'react'
 import PencilSketch from './icons/PencilSketch'
 import Database from './icons/Database'
 import Phone from './icons/Phone'
@@ -7,7 +8,7 @@ import Smiley from './icons/Smiley'
 
 import { ServiceCard, type ServiceCardProps } from './ServiceCard'
 
-export default function ServiceSection() {
+export default function ServiceSection (): JSX.Element {
   const cardProps: ServiceCardProps[] = [
     {
       title: 'UI/UX Design',

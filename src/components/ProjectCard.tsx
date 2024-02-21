@@ -1,8 +1,8 @@
-import { MouseContext } from '@/contexts/MouseContext'
-import { useContext } from 'react'
+import React, { useContext } from 'react'
+
 import { Card } from './ui/card'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
-
+import { MouseContext } from '@/contexts/MouseContext'
 import AnimateMouse from './AnimateMouse'
 import CallMade from './icons/CallMade'
 
@@ -14,26 +14,25 @@ export interface ProjectCardProps {
   reverse?: boolean
 }
 
-export function ProjectCard (props: ProjectCardProps) {
+export function ProjectCard (props: ProjectCardProps): JSX.Element {
   const { setMouseVariant, mouseVariant, setMouseChildren, resetToDefault } = useContext(MouseContext)
 
-  function onWorkOver () {
+  function onWorkOver (): void {
     const child = (
         <AnimateMouse
           textChild={<p className="text-sm text-primary-foreground font-bold">View</p>}
           iconChild={<CallMade className="fill-primary-foreground" />}
         />
-      )
+    )
 
     setMouseVariant([...mouseVariant, 'enlarged'])
     setMouseChildren(child)
   }
 
-
   return (
         <>
             {
-                props.reverse
+                (props.reverse ?? false)
                   ? <Card className={'flex flex-col lg:flex-row justify-center items-center min-w-[320px] p-5 gap-4 before:translate-y-[90%] after:translate-y-[90%] lg:py-20 lg:px-12 lg:gap-8 before:lg:translate-y-0 after:lg:translate-y-0 before:lg:translate-x-[200%] after:lg:translate-x-[120%]'} onClick={props.onClick} onMouseEnter={onWorkOver} onMouseLeave={resetToDefault}>
                         <div className={'w-[210px] lg:w-1/2 lg:order-1 lg:flex-1'}>
                             <AspectRatio ratio={69 / 100}>

@@ -1,6 +1,7 @@
+import React from 'react'
 import { DevCard, type DevCardProps } from './DevCard'
 
-export default function AboutUsSection() {
+export default function AboutUsSection (): JSX.Element {
   const devCardProps: DevCardProps[] = [
     {
       name: 'Nazmus Saqeeb',

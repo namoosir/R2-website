@@ -1,3 +1,4 @@
+import React from 'react'
 import HeroSection from './HeroSection'
 import ContactSection from './ContactSection'
 import ServiceSection from './ServiceSection'
@@ -5,7 +6,7 @@ import AboutUsSection from './AboutUsSection'
 import OurWorkSection from './OurWorkSection'
 import AnimateInView from './AnimateInView'
 
-export default function Home() {
+export default function Home (): JSX.Element {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center px-5 pb-5 gap-5 w-full h-full">
       <AnimateInView>

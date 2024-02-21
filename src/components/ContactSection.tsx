@@ -1,12 +1,13 @@
+import React from 'react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 
-export default function ContactSection () {
-  const onEmailClick = () => {
+export default function ContactSection (): JSX.Element {
+  const onEmailClick = (): void => {
     window.location.href = 'mailto:r2studiodev@gmail.com'
   }
 
-  const onPhoneClick = () => {
+  const onPhoneClick = (): void => {
     window.location.href = 'tel:+16475421246'
   }
 

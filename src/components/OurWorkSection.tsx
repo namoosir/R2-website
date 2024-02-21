@@ -1,8 +1,11 @@
+import React from 'react'
 import { ProjectCard, type ProjectCardProps } from './ProjectCard'
+// eslint-disable-next-line import/no-absolute-path
 import AggregatorMobile from '/AggregatorMobile.png'
+// eslint-disable-next-line import/no-absolute-path
 import AlgoVisualizer from '/AlgorithmVisualizer.webp'
 
-export default function OurWorkSection() {
+export default function OurWorkSection (): JSX.Element {
   const devCardProps: ProjectCardProps[] = [
     {
       image: AlgoVisualizer,

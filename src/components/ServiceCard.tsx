@@ -1,3 +1,4 @@
+import React from 'react'
 import { Card } from './ui/card'
 
 export interface ServiceCardProps {
@@ -5,7 +6,7 @@ export interface ServiceCardProps {
   title: string
 }
 
-export function ServiceCard (props: ServiceCardProps) {
+export function ServiceCard (props: ServiceCardProps): JSX.Element {
   return (
         <Card className="flex flex-row justify-center items-center min-w-[320px] w-full p-5 gap-4 lg:px-5 lg:py-8 lg:w-[360px]">
             {props.icon}

@@ -1,18 +1,20 @@
-import LogoScene from './3D/logoScene'
-import { Button } from './ui/button'
+import React from 'react'
 import { useLenis } from '@studio-freight/react-lenis'
 
-export default function HeroSection() {
+import LogoScene from './3D/logoScene'
+import { Button } from './ui/button'
+
+export default function HeroSection (): JSX.Element {
   const lenis = useLenis(() => { })
   const options = {
     offset: -92
   }
 
-  const onContactClick = () => {
+  const onContactClick = (): void => {
     lenis?.scrollTo('#contactSection', options)
   }
 
-  const onWorkClick = () => {
+  const onWorkClick = (): void => {
     lenis?.scrollTo('#ourWorkSection', options)
   }
 

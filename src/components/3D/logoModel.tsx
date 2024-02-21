@@ -1,5 +1,5 @@
 import type * as THREE from 'three'
-import { type RefObject, useEffect, useRef } from 'react'
+import React, { type RefObject, useEffect, useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { type SpringOptions, useMotionValue, useScroll, useTransform, useSpring } from 'framer-motion'
 import { motion } from 'framer-motion-3d'
@@ -21,14 +21,14 @@ type GLTFResult = GLTF & {
   }
 }
 
-export default function LogoModel (props: LogoModelProps) {
+export default function LogoModel (props: LogoModelProps): JSX.Element {
   const { nodes, materials } = useGLTF('/R2_Logo_final.glb') as GLTFResult
   const modelRef = useRef<MeshProps>(null)
   const mousePosition = useMouse()
 
   const options: SpringOptions = {
     damping: 80,
-    stiffness: 300,
+    stiffness: 300
   }
 
   // mouse stuff
@@ -36,7 +36,7 @@ export default function LogoModel (props: LogoModelProps) {
     x: useSpring(useMotionValue(0), options),
     y: useSpring(useMotionValue(0), options)
   }
-  useEffect(() => {    
+  useEffect(() => {
     const { innerWidth, innerHeight } = window
 
     const x = -1 * (-0.5 + (mousePosition.x / innerWidth))
@@ -59,12 +59,13 @@ export default function LogoModel (props: LogoModelProps) {
   })
 
   useEffect(() => {
-    if (modelRef.current && modelRef.current.geometry) {
+    if (((modelRef.current?.geometry) != null)) {
       modelRef.current.geometry.center()
     }
   }, [])
 
   return (
+        // eslint-disable-next-line react/no-unknown-property
         <group dispose={null}>
             <motion.mesh
                 ref={modelRef}

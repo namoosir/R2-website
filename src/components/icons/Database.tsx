@@ -1,5 +1,7 @@
+import React from 'react'
 import { type IconPropsType } from './types'
-export default function Database ({ className }: IconPropsType) {
+
+export default function Database ({ className }: IconPropsType): JSX.Element {
   return (
         <svg className={className} width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_249_160)">

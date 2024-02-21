@@ -1,3 +1,4 @@
+import React from 'react'
 import {
   BrowserRouter as Router,
   Route,
@@ -9,7 +10,7 @@ import Home from './components/HomePage'
 import Mouse from './components/mouse'
 import { MouseProvider } from './contexts/MouseContext'
 
-function App () {
+function App (): JSX.Element {
   return (
     <MouseProvider>
       <Mouse />

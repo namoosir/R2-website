@@ -1,4 +1,4 @@
-import { type ReactNode, createContext, useState } from 'react'
+import React, { type ReactNode, createContext, useState } from 'react'
 
 interface MouseProviderProps {
   children: ReactNode
@@ -22,14 +22,14 @@ const defaultValues = {
 
 const MouseContext = createContext<MouseContextType>(defaultValues)
 
-const MouseProvider = (props: MouseProviderProps) => {
+const MouseProvider = (props: MouseProviderProps): JSX.Element => {
   const [mouseVariant, setMouseVariant] = useState<string[]>(['default'])
   const [mouseChildren, setMouseChildren] = useState<ReactNode | undefined>(undefined)
 
-  const resetToDefault = () => {
+  const resetToDefault = (): void => {
     setMouseVariant(['default'])
     setMouseChildren(undefined)
-  };
+  }
 
   return (
         <MouseContext.Provider value={{ mouseVariant, setMouseVariant, mouseChildren, setMouseChildren, resetToDefault }}>
